@@ -14,7 +14,7 @@ You can download pretrained word embeddings like `glove.6B.200d.txt` from [here]
 
 ## Use from scratch
 
-After download the glove files, put the `glove.txt` file under directory `wordvec_files/`, then to create pretrained embedding and vocab cache using the glove file, you should run `python main.py` in the terminal, it takes about 30 seconds on my MacBook Pro 2018(13.3-inch) and it will print a few examples as below:
+After download the glove files, put the `glove.6B.200d.txt` file under directory `wordvec_files/`, if you do not use the `glove.6B.200d.txt`, you need to change the args of wordvec_file in `main.py`, then to create pretrained embedding and vocab cache using the glove file, you should run `python main.py` in the terminal, it takes about 30 seconds on my MacBook Pro 2018(13.3-inch) and it will print a few examples as below:
 
 ![](https://github.com/TianHongZXY/Compute-Word-Similarity/blob/master/images/img1.png)
 
