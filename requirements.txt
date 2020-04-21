@@ -1,0 +1,5 @@
+coloredlogs==14.0
+humanfriendly==8.2
+numpy==1.18.3
+PySnooper==0.3.0
+torch==1.4.0
