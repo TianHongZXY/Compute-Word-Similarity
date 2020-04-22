@@ -25,7 +25,7 @@ if __name__ == '__main__':
         args.device = 'cuda'
     # words = ['mother', 'father', 'eat', 'drink', 'school', 'student', 'teacher']
     words = ['in', 'the', 'with', 'said', 'he', 'it']
-    # words = whole_vocab(args)
+    # words = list(whole_vocab(args))[:100]
     with torch.no_grad():
         start_time = time.time()
         if args.pred_word:

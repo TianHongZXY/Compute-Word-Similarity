@@ -1,4 +1,5 @@
 import os
+import time
 import numpy as np
 import logging
 import coloredlogs
@@ -61,6 +62,7 @@ def save_cache(args):
 
 
 def loadwordvec(args):
+    start_time = time.time()
     if(os.path.exists(args.cache_embedding) and os.path.exists(args.word2id_file) and os.path.exists(args.id2word_file)):
         logger.info("Loading from cache...")
         pretrained_embedding = np.load(args.cache_embedding)
@@ -74,4 +76,5 @@ def loadwordvec(args):
     logger.info("Load pretrained embedding successfully!")
     logger.info("vocab_size = {}".format(vocab_size))
     logger.info("embed_dim = {}".format(embed_dim))
+    logger.info("load data costs {} s".format(time.time() - start_time))
     return pretrained_embedding, word2id, id2word
