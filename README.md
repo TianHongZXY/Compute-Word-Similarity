@@ -24,3 +24,4 @@ The you can play with it with a much faster speed, for instance:
 
 ![](https://github.com/TianHongZXY/Compute-Word-Similarity/blob/master/images/img2.png)
 
+For GPU user, you can specify `--use_gpu True` in terminal only if `torch.cuda.is_available() == True`, otherwise the model will compute on  cpu as default.
