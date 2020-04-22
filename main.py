@@ -3,6 +3,10 @@ import torch
 import argparse
 from calc_sim import similarity_model
 
+def whole_vocab(args):
+    from dataset import pickle_io
+    word2id = pickle_io(args.word2id_file, mode="rb")
+    return word2id.keys()
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -21,6 +25,7 @@ if __name__ == '__main__':
         args.device = 'cuda'
     # words = ['mother', 'father', 'eat', 'drink', 'school', 'student', 'teacher']
     words = ['in', 'the', 'with', 'said', 'he', 'it']
+    # words = whole_vocab(args)
     with torch.no_grad():
         start_time = time.time()
         if args.pred_word:
