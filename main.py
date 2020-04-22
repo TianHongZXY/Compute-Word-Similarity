@@ -19,7 +19,8 @@ if __name__ == '__main__':
     if args.use_gpu and torch.cuda.is_available():
         model = model.cuda()
         args.device = 'cuda'
-    words = ['mother', 'father', 'eat', 'drink', 'school', 'student', 'teacher']
+    # words = ['mother', 'father', 'eat', 'drink', 'school', 'student', 'teacher']
+    words = ['in', 'the', 'with', 'said', 'he', 'it']
     with torch.no_grad():
         start_time = time.time()
         if args.pred_word:

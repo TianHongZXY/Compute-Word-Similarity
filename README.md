@@ -10,7 +10,7 @@ pip3 install -r requirements.txt
 
 ## GloVe
 
-You can download pretrained word embeddings like `glove.6B.200d.txt` from [here](https://nlp.stanford.edu/projects/glove/)
+The `glove.6B.200d.txt` under `wordvec_files/` contains only the first 300 words from the original file. You can download the original files like `glove.6B.200d.txt` from [here](https://nlp.stanford.edu/projects/glove/)
 
 ## Use from scratch
 

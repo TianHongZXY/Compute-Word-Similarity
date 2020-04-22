@@ -61,7 +61,7 @@ def save_cache(args):
 
 
 def loadwordvec(args):
-    if(os.path.exists(args.wordvec_file) and os.path.exists(args.word2id_file) and os.path.exists(args.id2word_file)):
+    if(os.path.exists(args.cache_embedding) and os.path.exists(args.word2id_file) and os.path.exists(args.id2word_file)):
         logger.info("Loading from cache...")
         pretrained_embedding = np.load(args.cache_embedding)
         word2id = pickle_io(args.word2id_file, mode="rb")
