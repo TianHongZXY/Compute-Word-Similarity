@@ -1,3 +1,5 @@
 venv_calcsim
 .idea
 /__pycache__
+*.pkl
+*.npy

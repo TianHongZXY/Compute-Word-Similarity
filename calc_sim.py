@@ -16,7 +16,8 @@ class similarity_model(nn.Module):
         self.embedding.weight.data.copy_(torch.from_numpy(pretrained_embedding))
 
     def forward(self, word):
-        wordid = torch.LongTensor([self.word2id[word]], device=self.args.device)
+        wordid = torch.LongTensor([self.word2id[word]])
+        wordid = wordid.to(self.args.device)
         wordvec = self.embedding(wordid)
         sim_score = torch.matmul(wordvec, self.embedding.weight.data.T)
         sim_score = sim_score.detach().numpy().tolist()[0]
