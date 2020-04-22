@@ -39,4 +39,4 @@ For GPU user, you can specify `--use_gpu True` in terminal only if `torch.cuda.i
 
 My implementation costs more time when the `topk` becomes bigger because I use a heap to keep the topk most similar words rather than sort the cosine similarity between the target word and the whole vocabs and then return the first topk words as `Gensim` does, which is much faster than my impletation when topk is very big.
 
-But due to the time to load `wordvec_file` for `Gensim` is too long——**up to about 2 minutes**, which is very annoying when you want to test a few different words many times. My implementation takes **less than 1 second** to load `wordvec_file` which is much faster, so it is very easy to play with it repeatly without waiting for a long time everytime.
+But due to the time to load `wordvec_file` for `Gensim` is too long——**up to about 2 minutes**, which is very annoying when you want to test a few different words many times. My implementation takes **less than 1 second** to load `wordvec_file` which is much faster, so it is very easy to play with it repeatly without waiting for a long time before getting the answer everytime.
