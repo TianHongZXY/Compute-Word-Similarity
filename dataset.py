@@ -11,12 +11,12 @@ coloredlogs.install(level='INFO', logger=logger)
 def pickle_io(path, mode='r', obj=None):
     path = os.path.join(os.getcwd(), path)
     if mode in ['rb', 'r']:
-        logger.info("Loading obj from {}...".format(path))
+        # logger.info("Loading obj from {}...".format(path))
         with open(path, 'rb') as f:
             obj = pickle.load(f)
         return obj
     elif mode in ['wb', 'w']:
-        logger.info("Dumping obj to {}...".format(path))
+        # logger.info("Dumping obj to {}...".format(path))
         with open(path, 'wb') as f:
             pickle.dump(obj, f)
 
@@ -57,24 +57,24 @@ def save_cache(args):
     np.save(args.cache_embedding, pretrained_embedding) # 保存当前词向量文件的embedding和vocab，避免多次运行时重复加载浪费时间
     pickle_io(args.word2id_file, 'wb', word2id)
     pickle_io(args.id2word_file, 'wb', id2word)
-    logger.info("Cache saved!")
+    # logger.info("Cache saved!")
     return pretrained_embedding, word2id, id2word
 
 
 def loadwordvec(args):
     start_time = time.time()
     if(os.path.exists(args.cache_embedding) and os.path.exists(args.word2id_file) and os.path.exists(args.id2word_file)):
-        logger.info("Loading from cache...")
+        # logger.info("Loading from cache...")
         pretrained_embedding = np.load(args.cache_embedding)
         word2id = pickle_io(args.word2id_file, mode="rb")
         id2word = pickle_io(args.id2word_file, mode="rb")
     else:
-        logger.info("No cache found")
+        # logger.info("No cache found")
         pretrained_embedding, word2id, id2word = save_cache(args)
     vocab_size = len(word2id)
     embed_dim = pretrained_embedding.shape[-1]
-    logger.info("Load pretrained embedding successfully!")
+    # logger.info("Load pretrained embedding successfully!")
     logger.info("vocab_size = {}".format(vocab_size))
     logger.info("embed_dim = {}".format(embed_dim))
-    logger.info("load data costs {} s".format(time.time() - start_time))
+    # logger.info("load data costs {} s".format(time.time() - start_time))
     return pretrained_embedding, word2id, id2word

@@ -16,26 +16,12 @@ class similarity_model(nn.Module):
         self.embedding.weight.data.copy_(torch.from_numpy(pretrained_embedding))
         assert self.topk < self.vocab_size
 
-    def forward(self, word):
-        self.pq = []
-        wordid = torch.LongTensor([self.word2id[word]])
+    def forward(self, wordid):
+        wordid = torch.LongTensor(wordid)
         wordid = wordid.to(self.args.device)
         wordvec = self.embedding(wordid)
         sim_score = torch.matmul(wordvec, self.embedding.weight.data.T)
-        sim_score = sim_score.cpu().numpy().tolist()[0]
-        wordids = list(range(self.vocab_size))
-        # zip_of_score_i = zip(sim_score, wordids)
-        # zip_of_score_id = sorted(zip_of_score_id,reverse=True, key=lambda x: x[0]) # 根据sim_score对wordids排序，全词表排序，耗时长
-        # sim_score, wordids = zip(*zip_of_score_id)
-
-        for score, wordid in zip(sim_score, wordids): # 维持一个小根堆保存前topk + 1大的word
-            if(len(self.pq) < self.topk + 1):
-                heapq.heappush(self.pq, (score, wordid))
-            else:
-                smallest = heapq.heappop(self.pq)
-                heapq.heappush(self.pq, (score, wordid)) if score > smallest[0] else heapq.heappush(self.pq, smallest)
-
-        print("The top {} similar words of '{}' are: ".format(self.topk, word))
-        self.pq.sort(key=lambda x:x[0], reverse=True)
-        for (score, wordid) in self.pq[1:]: # 第一个是该单词自身，跳过
-            print("({}, {})".format(self.id2word[wordid], score))
+        score, indice = torch.topk(sim_score, k=self.args.topk + 1, dim=1, largest=True, sorted=True)
+        score = score[:, 1:] # 第一个score最大是该单词自身，跳过
+        indice = indice[:, 1:] # index[i]即为与wordid[i]最接近的topk个单词的id
+        return score.cpu().numpy(), indice.cpu().numpy()
