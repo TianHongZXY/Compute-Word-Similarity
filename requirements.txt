@@ -8,7 +8,7 @@ docutils==0.15.2
 humanfriendly==8.2
 idna==2.9
 jmespath==0.9.5
-numpy==1.18.3
+numpy==1.22.0
 PySnooper==0.3.0
 python-dateutil==2.8.1
 requests==2.23.0
